@@ -1,0 +1,2 @@
+Stand-in file so photo metadata can be recorded in the local demo.
+Not a tenant photo.

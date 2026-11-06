@@ -1,0 +1,21 @@
+# Safe sample config for Gary on Shear's M1.
+# The CLI loads this file by default. It contains no secrets.
+# Do not add credentials, a server address, or a live-send flag.
+# Those keys are rejected on purpose.
+#
+# BlueBubbles (Mac Messenger) stays disabled until Shear configures it
+# on the M1. Contact Key Verification on Enzo's separate Mac is not
+# evidence of the state of Shear's Mac.
+# Rhonda's Inkbox group is a separate relay. It is not selected here.
+
+[gary]
+name = "gary"
+
+[adapter]
+name = "mock"
+
+[bluebubbles]
+enabled = false
+
+[approvals]
+require_human = true
