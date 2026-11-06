@@ -1,0 +1,23 @@
+# Local runtime state. Never commit tenant requests, photos, or the audit database.
+data/
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+
+# Machine-local config. The committed sample is config/gary.example.toml.
+gary.local.toml
+config/gary.local.toml
+
+# Secrets files, if someone creates them by habit.
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+
+.DS_Store

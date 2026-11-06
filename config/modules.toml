@@ -1,0 +1,227 @@
+source_note = "User-supplied ops mind map, recreated 2026-11-06. Business facts are user-supplied and were not independently verified."
+
+[[module]]
+id = "maintenance"
+name = "Maintenance dedicated line"
+workflow = "maintenance_intake"
+summary = "Intake on a dedicated channel boundary, store the request and photo metadata, classify emergency versus routine with a phrase list, and queue a human when judgment is needed."
+human_gates = ["outbound_contact", "spend", "emergency_decision", "irreversible_action"]
+intended = [
+  "Own a tenant maintenance channel",
+  "Store the request and any photo metadata",
+  "Separate emergency from routine",
+  "Queue Shear or the property manager when a person is needed",
+  "Help schedule routine work after a person approves the message",
+]
+not_implemented = [
+  "Provisioning a dedicated phone number",
+  "A live BlueBubbles or other messaging client",
+  "Vendor dispatch",
+  "Automatic notification of Shear, tenants, or a property manager",
+]
+blockers = [
+  "The maintenance line number strategy is undecided",
+  "BlueBubbles is not verified on Shear's M1",
+  "No standing rule from Shear allows unattended contact",
+]
+docs = []
+notes = [
+  "This is the only runnable workflow in the starter.",
+  "Emergency matches queue a local draft. They do not send it and they do not dispatch anyone.",
+  "Phrase triage misses paraphrases. Those land in needs_review for a person.",
+]
+
+[[module]]
+id = "barbershop_booking"
+name = "Barbershop booking"
+workflow = "none"
+summary = "Future helper for Shear's barber DMs: check a calendar, hold a slot, and draft a confirmation or a waitlist text."
+human_gates = ["outbound_contact", "spend", "irreversible_action"]
+intended = [
+  "Answer DMs",
+  "Check a calendar",
+  "Lock a slot",
+  "Draft confirmations",
+  "Draft waitlist texts when the book is full",
+]
+not_implemented = [
+  "Instagram or any DM connector",
+  "Calendar read or write",
+  "Slot locking",
+  "Confirmation send",
+  "Waitlist send",
+]
+blockers = [
+  "No calendar is connected",
+  "No channel adapter can send",
+  "Shear has not set a standing rule for booking messages",
+]
+docs = []
+notes = [
+  "Defined only. Calling the workflow raises ModuleNotRunnable.",
+  "Outbound contact still needs Shear's OK until he sets a standing rule.",
+]
+
+[[module]]
+id = "tour_scheduling"
+name = "Tour scheduling"
+workflow = "none"
+summary = "Future self-serve tour request for prospects, with a reminder and a follow-up asking if they want to move in."
+human_gates = ["outbound_contact", "spend", "irreversible_action"]
+intended = [
+  "Self-serve tour request",
+  "Reminder before the tour",
+  "Follow-up about moving in",
+]
+not_implemented = [
+  "Public scheduling link",
+  "Calendar holds",
+  "Reminder send",
+  "Follow-up send",
+]
+blockers = [
+  "No scheduler is built",
+  "The current site tour button has no real link, per the user-supplied notes",
+  "Prospect contact needs Shear's OK",
+]
+docs = []
+notes = [
+  "The website draft names a tour page and marks the scheduler as not built.",
+]
+
+[[module]]
+id = "tenant_marketing"
+name = "Tenant marketing"
+workflow = "none"
+summary = "Future drafts of Instagram and Google Business posts from Shear's photos and a content calendar. The user-supplied angle is opportunity for growth."
+human_gates = ["outbound_contact", "spend", "irreversible_action"]
+intended = [
+  "Draft Instagram posts",
+  "Draft Google Business posts",
+  "Use a content calendar and Shear's existing photos",
+]
+not_implemented = [
+  "Instagram publishing",
+  "Google Business publishing",
+  "Image generation",
+  "A content calendar store",
+]
+blockers = [
+  "Publish only with Shear's OK",
+  "No social account is connected in this starter",
+]
+docs = []
+notes = [
+  "Nothing in this module posts, uploads, or spends on ads.",
+]
+
+[[module]]
+id = "website_rebuild"
+name = "Website rebuild"
+workflow = "docs_only"
+summary = "Unpublished sitemap and copy draft for galleriaworkspace.com. The live site was described as a bare placeholder. Tier prices other than virtual office from $75/month were not supplied."
+human_gates = ["outbound_contact", "spend", "irreversible_action"]
+intended = [
+  "Hero with a real photo",
+  "Live availability grid",
+  "Embedded tour scheduler",
+  "Actual pricing once Shear supplies it",
+  "Maintenance or tenant portal link in the footer",
+]
+not_implemented = [
+  "A built website",
+  "Deploy or DNS changes",
+  "Availability data",
+  "Office tier prices",
+  "A working tour link",
+  "A public maintenance portal",
+]
+blockers = [
+  "Draft only. Do not publish from this repo.",
+  "Only the virtual-office from-$75/month figure was supplied",
+]
+docs = ["docs/website/sitemap.md", "docs/website/copy.md"]
+notes = [
+  "docs_only means the markdown exists. It is not a site and it is not served.",
+]
+
+[[module]]
+id = "lead_gen"
+name = "Lead gen"
+workflow = "none"
+summary = "Future tracking for warm barber prospects Shear chooses to pursue, with cadence notes and a short list for Shear to close in person."
+human_gates = ["outbound_contact", "spend", "irreversible_action"]
+intended = [
+  "Track warm prospects",
+  "Keep cadence follow-up notes",
+  "Flag a short list for Shear to close personally",
+]
+not_implemented = [
+  "Instagram, Booksy, school, or Mizutani scraping",
+  "Prospect database import",
+  "Cold outreach",
+  "Any send",
+]
+blockers = [
+  "No cold outreach without Shear's OK",
+  "No source list is included in this repo",
+]
+docs = []
+notes = [
+  "Sources named in the user-supplied notes: Instagram, Booksy, barber schools, Mizutani network. No connector to those exists here.",
+]
+
+[[module]]
+id = "hiring"
+name = "Hiring"
+workflow = "none"
+summary = "Future opening posts, portfolio screen, and interview notes against a rubric Shear writes. Shear sees the top candidates in person and decides any decline."
+human_gates = ["outbound_contact", "spend", "irreversible_action"]
+intended = [
+  "Draft an opening",
+  "Screen a portfolio against Shear's rubric",
+  "Keep structured interview notes",
+  "Surface two or three people for a face-to-face",
+  "Draft a decline only if Shear decides one is needed",
+]
+not_implemented = [
+  "Job-board posting",
+  "A rubric",
+  "Applicant storage",
+  "Decline email send",
+]
+blockers = [
+  "Shear has not supplied a rubric",
+  "Shear decides any decline. This starter does not send one.",
+]
+docs = []
+notes = [
+  "No sample candidates and no sample rejection copy are included.",
+]
+
+[[module]]
+id = "online_academy"
+name = "Online academy"
+workflow = "none"
+summary = "Future extension of the school Shear already runs: courses, tool setup, live and online classes, tutorials, and editing-software setup. No catalog was supplied, so none is invented here."
+human_gates = ["outbound_contact", "spend", "irreversible_action"]
+intended = [
+  "Extend the existing school",
+  "Host course outlines Shear provides",
+  "Draft tool and editing-software setup notes",
+  "Schedule live or online sessions Shear approves",
+]
+not_implemented = [
+  "A course catalog",
+  "Video hosting",
+  "Payments or enrollment",
+  "Student messaging",
+]
+blockers = [
+  "No course list was in the source notes",
+  "Do not invent classes, prices, or enrollments",
+]
+docs = []
+notes = [
+  "Defined so Claude Code can extend Shear's real catalog later. This file is not that catalog.",
+]
